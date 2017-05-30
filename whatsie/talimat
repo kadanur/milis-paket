@@ -1,0 +1,35 @@
+# Description: Whatsapp Web için masaüstü uygulaması.
+# URL: https://github.com/gsantner/whatsie
+# Packager: kadanur
+# Depends on: desktop-file-utils gconf gtk2 gvfs hicolor-icon-theme libgcrypt libgudev libnotify xorg-libxtst nss python xdg-utils 
+
+name=whatsie
+version=2.1.0
+release=4.0
+source=(https://github.com/gsantner/whatsie/releases/download/v2.1.0/whatsie-2.1.0-linux-amd64.deb
+)
+
+build() {
+ 
+ar x  $SRC/whatsie-2.1.0-linux-amd64.deb
+  bsdtar -xf data.tar.gz -C "$PKG/"
+
+  # Link to the binary
+
+  
+
+  mkdir -p "$PKG/usr/bin/"
+
+  ln -s /opt/$name/$name "$PKG/usr/bin/$name"
+
+  # Archify folder permissions
+
+  cd $PKG
+
+  for d in $(find . -type d); do
+
+    chmod 755 $d
+
+  done
+
+}
